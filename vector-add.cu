@@ -3,7 +3,7 @@
 #include<cuda_runtime.h>
 
 // CPU function
-void addVectors(float *a, float *b, float *c, int n){
+void addVectors(const float *a, const float *b, float *c, int n){
     for(int i = 0; i < n; i++){
         c[i] = a[i] + b[i];
     }
@@ -25,9 +25,13 @@ int main(){
 
     addVectors(a, b, c, n);
 
-    printf("\n");
+    std::cout << std::endl;
     for(int i=0; i<n; i++)
         std::cout<< c[i] << " ";
+
+    free(a);
+    free(b);
+    free(c);
 
     return 0;
 }
